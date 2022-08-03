@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-.header {
+header {
   align-items: center;
   background-color: #02202f;
   color: white;
@@ -15,11 +15,11 @@
   width: 100%;
 }
 
-.header .glimpse-logo {
+header .glimpse-logo {
   height: 30px;
 }
 
-.header .heading {
+header .heading {
   font-size: 28px;
   font-weight: bolder;
 }
@@ -65,4 +65,11 @@ main {
 .ad-information {
   align-items: flex-start;
   display: inline-flex;
+}
+
+footer {
+  background-color: #02202f;
+  color: white;
+  padding: 8px 16px;
+  text-align: right;
 }
