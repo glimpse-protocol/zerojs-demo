@@ -9,7 +9,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "develop": "http-server -c-1 --cors",
+    "develop": "http-server -c-1 --cors -p 13080",
     "lint": "eslint src/**/*.js"
   },
   "devDependencies": {
