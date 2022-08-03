@@ -24,6 +24,10 @@
   font-weight: bolder;
 }
 
+main {
+  margin: 0 40px;
+}
+
 .information {
   align-items: center;
   display: flex;
@@ -31,4 +35,34 @@
   font-size: 20px;
   gap: 16px;
   margin: 40px 0;
+}
+
+.ads {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: space-between;
+  max-height: 1000px;
+  min-height: 750px;
+}
+
+.ad-box {
+  align-items: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+  display: inline-flex;
+  gap: 32px;
+  padding: 24px;
+}
+
+.ad-placeholder {
+  background-color: lightgray;
+  height: 250px;
+  width: 300px;
+}
+
+.ad-information {
+  align-items: flex-start;
+  display: inline-flex;
 }
