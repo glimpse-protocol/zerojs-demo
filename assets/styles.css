@@ -5,6 +5,11 @@
   padding: 0;
 }
 
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
 header {
   align-items: center;
   background-color: #02202f;
@@ -25,7 +30,7 @@ header .heading {
 }
 
 main {
-  margin: 0 40px;
+  padding: 40px 40px 48px 40px;
 }
 
 .information {
@@ -43,6 +48,7 @@ main {
   flex-direction: column;
   height: 60vh;
   justify-content: space-between;
+  padding: 80px 0 0 0;
   max-height: 1000px;
   min-height: 750px;
 }
@@ -69,7 +75,10 @@ main {
 
 footer {
   background-color: #02202f;
+  bottom: 0;
   color: white;
   padding: 8px 16px;
+  position: absolute;
   text-align: right;
+  width: 100%;
 }
