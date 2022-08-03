@@ -4,6 +4,88 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/styles.css">
+
+  <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+  <script async src="https://cdn.glimpsezero.io/scripts/prebid.js"></script>
+  <script async src="https://cdn.glimpsezero.io/scripts/zero.js"></script>
+
+  <script>
+    window.googletag = window.googletag || {}
+    window.googletag.cmd = window.googletag.cmd || []
+    var pbjs = pbjs || {}
+    pbjs.que = pbjs.que || []
+
+    const units = [
+      {
+        div: "unit-sponsorship",
+        code: "/21789678234/gz_demo_sponsorship_300x250",
+        mediaTypes: {
+          banner: {
+            sizes: [[300, 250]],
+          },
+        },
+        bids: [
+          {
+            bidder: "glimpse",
+          },
+        ],
+      },
+      {
+        div: "unit-prebid",
+        code: "/21789678234/gz_demo_prebid_300x250",
+        mediaTypes: {
+          banner: {
+            sizes: [[300, 250]],
+          },
+        },
+        bids: [
+          {
+            bidder: "glimpse",
+          },
+        ],
+      },
+    ]
+
+    window.googletag.cmd.push(() => {
+      units.forEach(({ code, mediaTypes, div }) => {
+        googletag
+          .defineSlot(code, mediaTypes.banner.sizes, div)
+          .addService(googletag.pubads())
+      })
+      googletag.pubads().enableSingleRequest()
+      googletag.pubads().disableInitialLoad()
+      googletag.enableServices()
+    })
+
+    window.zjs = window.zjs || {}
+    window.zjs.cmd = window.zjs.cmd || []
+
+    window.zjs.cmd.push(() => {
+      zjs.setPubId("ggg")
+      zjs.onEvent("configUpdated", (...args) => console.log(`received configUpdated event`, ...args))
+      zjs.onEvent("adUnitsTargeted", (...args) => console.log(`received adUnitsTargeted event`, ...args))
+      zjs.onEvent("adRequested", (...args) => console.log(`received adRequested event`, ...args))
+      zjs.onEvent("adServed", (...args) => console.log("received adLoaded event", ...args))
+      zjs.onEvent("adViewed", (...args) => console.log("received adViewed event", ...args))
+    })
+
+    window.zjs.cmd.push(() => {
+      /* need { slot: string } on each object */
+      const [unfilled, filled] = window.zjs.go(units)
+
+      pbjs.que.push(() => {
+        pbjs.addAdUnits(unfilled)
+        pbjs.requestBids({
+          bidsBackHandler: () => {
+            pbjs.setTargetingForGPTAsync()
+            googletag.pubads().refresh()
+          },
+          timeout: 5000,
+        })
+      })
+    })
+  </script>
+
   <title>Zero Js Demo Page</title>
 </head>
 <body>
@@ -22,7 +104,13 @@
     <section class="ads">
       <section class="ad-box">
         <!-- TODO: replace ad placeholder with proper ad via ad-stack.js -->
-        <div class="ad-placeholder"></div>
+        <div class="unit" id="unit-sponsorship">
+          <script type="text/javascript">
+            googletag.cmd.push(function () {
+              googletag.display("unit-sponsorship")
+            })
+          </script>
+        </div>
         <aside class="information ad-information">
           <!-- TODO: Dynamically add this via measurement.js -->
           <p>Render time: xxxms</p>
@@ -32,7 +120,13 @@
       </section>
       <section class="ad-box">
         <!-- TODO: replace ad placeholder with proper ad via ad-stack.js -->
-        <div class="ad-placeholder"></div>
+        <div class="unit" id="unit-prebid">
+          <script type="text/javascript">
+            googletag.cmd.push(function () {
+              googletag.display("unit-prebid")
+            })
+          </script>
+        </div>
         <aside class="information ad-information">
           <!-- TODO: Dynamically add this via measurement.js -->
           <p>Render time: xxxms</p>
