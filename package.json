@@ -9,7 +9,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "develop": "http-server",
+    "develop": "http-server -c-1",
     "lint": "eslint src/**/*.js"
   },
   "devDependencies": {
