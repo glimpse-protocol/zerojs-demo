@@ -7,7 +7,7 @@
 
   <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
   <script async src="https://cdn.glimpsezero.io/scripts/prebid.js"></script>
-  <script async src="https://cdn.glimpsezero.io/scripts/zero.js"></script>
+  <script async src="src/zero.js"></script>
 
   <script>
     const units = [
@@ -41,22 +41,28 @@
       },
     ]
 
-    var googletag = googletag || {}
-    googletag.cmd = googletag.cmd || []
-    googletag.cmd.push(function () {
-      googletag.pubads().disableInitialLoad()
+      // Setup Glimpse Zero
+    var zjs = window.zjs || {}
+    zjs.cmd = window.zjs.cmd || []
+
+    zjs.cmd.push(() => {
+      zjs.setPubId("ggg")
+      const [unmatched, matched] = zjs.go(units)
+      runHeaderBidding(unmatched)
     })
 
     var pbjs = pbjs || {}
     pbjs.que = pbjs.que || []
 
-    pbjs.que.push(function () {
-      pbjs.addAdUnits(units)
-      pbjs.requestBids({
-        bidsBackHandler: initAdserver,
-        timeout: 1500,
+    function runHeaderBidding(unmatched) {
+      pbjs.que.push(function () {
+        pbjs.addAdUnits(unmatched)
+        pbjs.requestBids({
+          bidsBackHandler: initAdserver,
+          timeout: 1500,
+        })
       })
-    })
+    }
 
     function initAdserver() {
       if (pbjs.initAdserverSet) return
@@ -73,12 +79,16 @@
       initAdserver()
     }, 3000)
 
+    var googletag = googletag || {}
+    googletag.cmd = googletag.cmd || []
+
     googletag.cmd.push(function () {
       units.forEach(({ code, mediaTypes, div }) => {
         googletag
           .defineSlot(code, mediaTypes.banner.sizes, div)
           .addService(googletag.pubads())
       })
+      googletag.pubads().disableInitialLoad()
       googletag.pubads().enableSingleRequest()
       googletag.enableServices()
     })
