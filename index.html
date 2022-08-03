@@ -42,46 +42,46 @@
     ]
 
     var googletag = googletag || {}
-      googletag.cmd = googletag.cmd || []
+    googletag.cmd = googletag.cmd || []
+    googletag.cmd.push(function () {
+      googletag.pubads().disableInitialLoad()
+    })
+
+    var pbjs = pbjs || {}
+    pbjs.que = pbjs.que || []
+
+    pbjs.que.push(function () {
+      pbjs.addAdUnits(units)
+      pbjs.requestBids({
+        bidsBackHandler: initAdserver,
+        timeout: 1500,
+      })
+    })
+
+    function initAdserver() {
+      if (pbjs.initAdserverSet) return
+      pbjs.initAdserverSet = true
       googletag.cmd.push(function () {
-        googletag.pubads().disableInitialLoad()
-      })
-
-      var pbjs = pbjs || {}
-      pbjs.que = pbjs.que || []
-
-      pbjs.que.push(function () {
-        pbjs.addAdUnits(units)
-        pbjs.requestBids({
-          bidsBackHandler: initAdserver,
-          timeout: 1500,
+        pbjs.que.push(function () {
+          pbjs.setTargetingForGPTAsync()
+          googletag.pubads().refresh()
         })
       })
+    }
+    // in case PBJS doesn't load
+    setTimeout(function () {
+      initAdserver()
+    }, 3000)
 
-      function initAdserver() {
-        if (pbjs.initAdserverSet) return
-        pbjs.initAdserverSet = true
-        googletag.cmd.push(function () {
-          pbjs.que.push(function () {
-            pbjs.setTargetingForGPTAsync()
-            googletag.pubads().refresh()
-          })
-        })
-      }
-      // in case PBJS doesn't load
-      setTimeout(function () {
-        initAdserver()
-      }, 3000)
-
-      googletag.cmd.push(function () {
-        units.forEach(({ code, mediaTypes, div }) => {
-          googletag
-            .defineSlot(code, mediaTypes.banner.sizes, div)
-            .addService(googletag.pubads())
-        })
-        googletag.pubads().enableSingleRequest()
-        googletag.enableServices()
+    googletag.cmd.push(function () {
+      units.forEach(({ code, mediaTypes, div }) => {
+        googletag
+          .defineSlot(code, mediaTypes.banner.sizes, div)
+          .addService(googletag.pubads())
       })
+      googletag.pubads().enableSingleRequest()
+      googletag.enableServices()
+    })
   </script>
 
   <title>Zero.js Demo Page</title>
