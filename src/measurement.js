@@ -1,5 +1,5 @@
 function measurePageLoad(count = 0) {
-  if (count >= 10) {
+  if (count >= 100) {
     console.warn("Page load time was unable to be calculated")
     return undefined
   }
@@ -14,7 +14,7 @@ function measurePageLoad(count = 0) {
 }
 
 function mesasureZeroJsLoad(count = 0) {
-  if (count >= 10) {
+  if (count >= 100) {
     console.warn("Zero.js load time was unable to be calculated")
     return undefined
   }
