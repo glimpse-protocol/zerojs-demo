@@ -32,3 +32,19 @@ window.addEventListener("DOMContentLoaded", () => {
   measurePageLoad()
   mesasureZeroJsLoad()
 })
+
+window.addEventListener("message", ({ data }) => {
+  if (data === "zjs_serve") {
+    const adType = document.getElementById("dynamic-ad-type")
+    adType.innerText = "Line Item: Sponsorship"
+
+    const adCarbon = document.getElementById("dynamic-ad-carbon")
+    adCarbon.innerText = "0.1g"
+
+    const carbonSaving = document.getElementById("dynamic-carbon-saving")
+    carbonSaving.innerText = "90% less carbon"
+
+    console.log("WHOOOO")
+    // update carbon / total carbon & line item type
+  }
+})

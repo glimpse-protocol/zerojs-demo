@@ -47,6 +47,7 @@
 
     zjs.cmd.push(() => {
       zjs.setPubId("jp57")
+      zjs.onEvent("adServed", (...args) => window.postMessage("zjs_serve"))
       const [unmatched, matched] = zjs.pretarget(units)
       runHeaderBidding(unmatched)
     })
@@ -106,7 +107,7 @@
     <section class="information page-information">
       <p id="page-load-time">Page load time: ?s</p>
       <p id="zerojs-load-time">Zero.js load time: ?s</p>
-      <p>90% less carbon</p>
+      <p id="dynamic-carbon-saving">0% less carbon</p>
     </section>
     <section class="ads">
       <section class="ad-box">
@@ -120,10 +121,8 @@
         <aside class="information ad-information">
           <!-- TODO: Dynamically add this via measurement.js -->
           <p>Render time: xxxms</p>
-          <!-- TODO: Dynamically add this via measurement.js -->
-          <p>Line Item: Sponsorship</p>
-          <!-- TODO: Dynamically add this via measurement.js -->
-          <p>Carbon: 0.1g</p>
+          <p id="dynamic-ad-type">Line Item: Prebid</p>
+          <p id="dynamic-ad-carbon">Carbon: 1.0g</p>
         </aside>
       </section>
       <section class="ad-box">
