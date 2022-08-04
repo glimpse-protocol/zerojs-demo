@@ -47,7 +47,7 @@
 
     zjs.cmd.push(() => {
       zjs.setPubId("jp57")
-      const [unmatched, matched] = zjs.go(units)
+      const [unmatched, matched] = zjs.pretarget(units)
       runHeaderBidding(unmatched)
     })
 
