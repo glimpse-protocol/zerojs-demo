@@ -7,9 +7,9 @@
 
   <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
   <script async src="https://cdn.glimpsezero.io/scripts/prebid.js"></script>
-  <script async src="src/zero.js"></script>
+  <script async src="https://cdn.glimpsezero.io/scripts/zero.js"></script>
 
-  <script>
+<script>
     const units = [
       {
         div: "unit-sponsorship",
@@ -46,7 +46,7 @@
     zjs.cmd = window.zjs.cmd || []
 
     zjs.cmd.push(() => {
-      zjs.setPubId("ggg")
+      zjs.setPubId("jp57")
       const [unmatched, matched] = zjs.go(units)
       runHeaderBidding(unmatched)
     })
@@ -120,7 +120,9 @@
         <aside class="information ad-information">
           <!-- TODO: Dynamically add this via measurement.js -->
           <p>Render time: xxxms</p>
+          <!-- TODO: Dynamically add this via measurement.js -->
           <p>Line Item: Sponsorship</p>
+          <!-- TODO: Dynamically add this via measurement.js -->
           <p>Carbon: 0.1g</p>
         </aside>
       </section>
