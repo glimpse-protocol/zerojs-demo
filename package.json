@@ -9,6 +9,7 @@
     "node": ">=16"
   },
   "scripts": {
+    "deploy": "rsync -av --usermap=evan:www-data assets index.html src demo:/srv/zerojs-demo",
     "develop": "http-server -c-1 --cors",
     "lint": "eslint src/**/*.js"
   },
