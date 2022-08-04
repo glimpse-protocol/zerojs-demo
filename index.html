@@ -105,9 +105,9 @@
   </header>
   <main>
     <section class="information page-information">
-      <p id="page-load-time">Page load time: ?s</p>
-      <p id="zerojs-load-time">Zero.js load time: ?s</p>
-      <p id="dynamic-carbon-saving">0% less carbon</p>
+      <p>Page load time: <span id="page-load-time">?</span>s</p>
+      <p>Zero.js load time: <span id="zerojs-load-time">?</span>s</p>
+      <p><span id="total-carbon-savings">0</span>% less carbon</p>
     </section>
     <section class="ads">
       <section class="ad-box">
@@ -120,9 +120,9 @@
         </div>
         <aside class="information ad-information">
           <!-- TODO: Dynamically add this via measurement.js -->
-          <p>Render time: xxxms</p>
-          <p id="dynamic-ad-type">Line Item: Prebid</p>
-          <p id="dynamic-ad-carbon">Carbon: 1.0g</p>
+          <p>Render time: ???ms</p>
+          <p>Line Item: <span id="ad-unit-path">Prebid</span></p>
+          <p>Carbon: <span id="ad-unit-carbon-cost">1.0</span>g</p>
         </aside>
       </section>
       <section class="ad-box">
@@ -135,7 +135,7 @@
         </div>
         <aside class="information ad-information">
           <!-- TODO: Dynamically add this via measurement.js -->
-          <p>Render time: xxxms</p>
+          <p>Render time: ???ms</p>
           <p>Line Item: Prebid</p>
           <p>Carbon: 1.0g</p>
         </aside>
