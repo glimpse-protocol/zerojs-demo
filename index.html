@@ -48,8 +48,11 @@
 
     zjs.cmd.push(() => {
       zjs.setPubId("jp57")
-      zjs.onEvent("adServed", () => window.postMessage("zjs_serve"))
+
       const [unmatched, matched] = zjs.pretarget(units)
+
+      zjs.onEvent("adServed", () => window.postMessage("zjs_serve"))
+
       runHeaderBidding(unmatched)
     })
 

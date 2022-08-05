@@ -4,7 +4,7 @@
   "name": "zerojs-demo",
   "packageManager": "yarn@3.2.2",
   "repository": "git@github.com:glimpse-protocol/zerojs-demo.git",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "engines": {
     "node": ">=16"
   },
