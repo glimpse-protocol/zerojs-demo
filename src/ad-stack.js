@@ -48,6 +48,21 @@ zjs.cmd.push(() => {
   runHeaderBidding(unmatched)
 })
 
+var googletag = googletag || {}
+googletag.cmd = googletag.cmd || []
+
+googletag.cmd.push(function () {
+  units.forEach(({ code, mediaTypes, div }) => {
+    googletag
+      .defineSlot(code, mediaTypes.banner.sizes, div)
+      .addService(googletag.pubads())
+  })
+  googletag.pubads().disableInitialLoad()
+  googletag.pubads().enableSingleRequest()
+  googletag.enableServices()
+})
+
+
 var pbjs = pbjs || {}
 pbjs.que = pbjs.que || []
 
@@ -71,20 +86,7 @@ function initAdserver() {
     })
   })
 }
+
 setTimeout(function () {
   initAdserver()
 }, 3000)
-
-var googletag = googletag || {}
-googletag.cmd = googletag.cmd || []
-
-googletag.cmd.push(function () {
-  units.forEach(({ code, mediaTypes, div }) => {
-    googletag
-      .defineSlot(code, mediaTypes.banner.sizes, div)
-      .addService(googletag.pubads())
-  })
-  googletag.pubads().disableInitialLoad()
-  googletag.pubads().enableSingleRequest()
-  googletag.enableServices()
-})
