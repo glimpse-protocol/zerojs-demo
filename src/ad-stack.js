@@ -1,7 +1,7 @@
 const units = [
   {
     div: "unit-01",
-    code: "/21789678234/gz_demo_sponsorship_300x250",
+    code: "/21789678234/gz_demo_01_300x250",
     mediaTypes: {
       banner: {
         sizes: [[300, 250]],
@@ -15,7 +15,7 @@ const units = [
   },
   {
     div: "unit-02",
-    code: "/21789678234/gz_demo_prebid_300x250",
+    code: "/21789678234/gz_demo_02_300x250",
     mediaTypes: {
       banner: {
         sizes: [[300, 250]],
