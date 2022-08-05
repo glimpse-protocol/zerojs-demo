@@ -29,16 +29,21 @@ const units = [
   },
 ]
 
-// Setup Glimpse Zero
 var zjs = window.zjs || {}
 zjs.cmd = window.zjs.cmd || []
 
 zjs.cmd.push(() => {
   zjs.setPubId("jp57")
 
-  const [unmatched] = zjs.pretarget(units)
+  const [unmatched, matched] = zjs.pretarget(units)
 
-  zjs.onEvent("adServed", () => window.postMessage("zjs_serve"))
+  window.startMeasurements(matched)
+
+  googletag.cmd.push(function () {
+    googletag.pubads().addEventListener("slotRenderEnded", () => {
+      window.endMeasurements()
+    })
+  })
 
   runHeaderBidding(unmatched)
 })
@@ -66,7 +71,6 @@ function initAdserver() {
     })
   })
 }
-// in case PBJS doesn't load
 setTimeout(function () {
   initAdserver()
 }, 3000)
