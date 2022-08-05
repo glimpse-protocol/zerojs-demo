@@ -5,10 +5,8 @@ window.startMeasurements = (matched) => {
 }
 
 window.endMeasurements = () => {
-  console.log("I've been called")
   window.endTime = Date.now()
   const adLoadTime = (window.endTime - window.startTime) / 1000
-  console.log(adLoadTime)
   const isPrematched = window.prematched
 
   const pageLoadTime = document.getElementById("page-load-time")
