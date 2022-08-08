@@ -52,18 +52,12 @@ main {
   min-height: 750px;
 }
 
-.ad-box {
-  align-items: center;
-  border: 2px solid gray;
-  border-radius: 10px;
-  display: inline-flex;
-  gap: 32px;
-  padding: 24px;
-}
-
 .unit {
   background-color: lightgray;
+  border-radius: 10px;
+  border: 2px solid gray;
   height: 250px;
+  overflow: hidden;
   width: 300px;
 }
 
@@ -83,16 +77,10 @@ footer {
   }
   
   .ads {
-    flex-direction: row;
     gap: 16px;
     height: auto;
-    justify-content: space-evenly;
     min-height: auto;
-    padding: 40px 0 0 0;
+    padding: 28px 0 0 0;
   }
 
-  .ad-box {
-    flex-direction: column-reverse;
-  }
-  
 }
