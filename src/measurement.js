@@ -7,6 +7,8 @@ function getPrematchedAverageChart() {
   const previousMeasurements = JSON.parse(localStorage.getItem(Key.Prematched))
 
   if (previousMeasurements) {
+    document.getElementById("prematched-chart").className = "chart"
+    
     const gam = getAverageValueOfKey(previousMeasurements, "gam")
     const render = getAverageValueOfKey(previousMeasurements, "render")
 
@@ -23,6 +25,8 @@ function getPostmatchedAverageChart() {
   const previousMeasurements = JSON.parse(localStorage.getItem(Key.Postmatched))
 
   if (previousMeasurements) {
+    document.getElementById("postmatched-chart").className = "chart"
+
     const gam = getAverageValueOfKey(previousMeasurements, "gam")
     const prebid = getAverageValueOfKey(previousMeasurements, "prebid")
     const render = getAverageValueOfKey(previousMeasurements, "render")
@@ -78,7 +82,7 @@ window.endMeasurements = () => {
 
   measurements.render = window.endTime - window.gamEnd
 
-  const pageLoadEmoji = document.getElementById("current-page-load-emoji")
+  const pageLoadEmoji = document.getElementById("page-load-emoji")
   pageLoadEmoji.innerHTML = isPrematched ? "⚡" : "🐌"
 
   const currentMeasurements = JSON.parse(localStorage.getItem(window.storageKey)) ?? []
@@ -98,11 +102,11 @@ function addBarMeasurements(measurements, barName) {
   const pageLoadTime = document.getElementById(`${barName}-page-load-time`)
 
   gamBar.style.width = `${gam}px`
-  renderBar.style.width = `${render}ps`
- 
+  renderBar.style.width = `${render}px`
+
   if (prebidBar) {
     prebid === 0
-      ? prebidBar.className = prebidBar.className + " bar-hidden"
+      ? prebidBar.className = prebidBar.className + " hidden"
       : prebidBar.style.width = `${prebid}px`
   }
 

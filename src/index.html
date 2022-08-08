@@ -23,13 +23,13 @@
   </header>
   <main>
     <section class="charts">
-      <article class="chart">
+      <article class="chart hidden" id="prematched-chart">
         <p class="chart-title">Avg Prematched Load Time: </p>
         <div class="bar bar-gam" id="prematched-bar-gam">GAM</div>
         <div class="bar bar-render" id="prematched-bar-render">Render</div>
         <p class="result"><span id="prematched-page-load-time"></span>ms</span></p>
       </article>
-      <article class="chart">
+      <article class="chart hidden" id="postmatched-chart">
         <p class="chart-title">Avg Postmatched Load Time: </p>
         <div class="bar bar-prebid" id="postmatched-bar-prebid">Prebid</div>
         <div class="bar bar-gam" id="postmatched-bar-gam">GAM</div>
@@ -41,7 +41,7 @@
         <div class="bar bar-prebid" id="current-bar-prebid">Prebid</div>
         <div class="bar bar-gam" id="current-bar-gam">GAM</div>
         <div class="bar bar-render" id="current-bar-render">Render</div>
-        <p class="result"><span id="current-page-load-time"></span>ms <span id="current-page-load-emoji"></span></p>
+        <p class="result"><span id="current-page-load-time"></span>ms <span id="page-load-emoji"></span></p>
       </article>
     </section>
     <section class="ads">

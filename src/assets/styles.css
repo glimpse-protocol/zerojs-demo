@@ -63,10 +63,6 @@ main {
   width: 0;
 }
 
-.bar-hidden {
-  display: none;
-}
-
 .bar-prebid {
   background-color: cyan;
 }
@@ -102,6 +98,10 @@ main {
   height: 250px;
   overflow: hidden;
   width: 300px;
+}
+
+.hidden {
+  display: none;
 }
 
 footer {

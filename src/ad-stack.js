@@ -35,7 +35,7 @@ zjs.cmd = window.zjs.cmd || []
 zjs.cmd.push(() => {
   zjs.setPubId("jp57")
 
-  const [unmatched, matched] = zjs.pretarget(units)
+  const [unmatched, matched] = zjs.prematch(units)
 
   window.startMeasurements(matched)
 
