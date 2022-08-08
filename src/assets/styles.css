@@ -33,19 +33,25 @@ main {
   padding: 40px 40px 48px 40px;
 }
 
-.information {
-  align-items: center;
+.charts {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
+  gap: 24px;
   font-size: 20px;
   margin: 40px 0;
 }
 
-.graph {
+.chart {
   align-items: center;
   display: flex;
-  max-width: 1150px;
+  max-width: 1300px;
   justify-content: center;
+}
+
+.chart-title {
+  margin-right: 24px;
+  width: 300px;
 }
 
 .bar {
@@ -74,7 +80,7 @@ main {
 }
 
 .result {
-  padding-left: 24px;
+  margin-left: 24px;
   width: 150px;
 }
 
