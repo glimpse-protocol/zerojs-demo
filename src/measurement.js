@@ -14,13 +14,4 @@ window.endMeasurements = () => {
 
   const pageLoadEmoji = document.getElementById("page-load-emoji")
   pageLoadEmoji.innerHTML = isPrematched ? "⚡" : "🐌"
-
-  const unitOne = document.getElementById("unit-01-type")
-  unitOne.innerText = isPrematched ? "Prematch ✔️" : "Postmatch ❌"
-
-  const unitTwo = document.getElementById("unit-02-type")
-  unitTwo.innerText = isPrematched ? "Prematch ✔️" : "Postmatch ❌"
-
-  const carbonSaving = document.getElementById("total-carbon-savings")
-  carbonSaving.innerText = isPrematched ? 90 : 0
 }
