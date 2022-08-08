@@ -82,13 +82,13 @@ window.endMeasurements = () => {
 
   measurements.render = window.endTime - window.gamEnd
 
-  const pageLoadEmoji = document.getElementById("page-load-emoji")
-  pageLoadEmoji.innerHTML = isPrematched ? "⚡" : "🐌"
-
   const currentMeasurements = JSON.parse(localStorage.getItem(window.storageKey)) ?? []
   localStorage.setItem(window.storageKey, JSON.stringify([measurements, ...currentMeasurements]))
 
   addBarMeasurements(measurements, "current")
+
+  const pageLoadEmoji = document.getElementById("page-load-emoji")
+  pageLoadEmoji.innerHTML = isPrematched ? "⚡" : "🐌"
 }
 
 function addBarMeasurements(measurements, barName) {
@@ -102,13 +102,17 @@ function addBarMeasurements(measurements, barName) {
   const pageLoadTime = document.getElementById(`${barName}-page-load-time`)
 
   gamBar.style.width = `${gam}px`
+  gamBar.innerText = `${gam}ms`
+  
   renderBar.style.width = `${render}px`
+  renderBar.innerText = `${render}ms`
 
-  if (prebidBar) {
-    prebid === 0
-      ? prebidBar.className = prebidBar.className + " hidden"
-      : prebidBar.style.width = `${prebid}px`
+  if (prebidBar && prebid === 0) {
+    prebidBar.className = prebidBar.className + " hidden"
+  } else if (prebidBar) {
+    prebidBar.style.width = `${prebid}px`
+    prebidBar.innerText = `${prebid}ms`
   }
 
-  pageLoadTime.innerText = total
+  pageLoadTime.innerText = `${total}ms`
 }
