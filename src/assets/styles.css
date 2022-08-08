@@ -41,6 +41,43 @@ main {
   margin: 40px 0;
 }
 
+.graph {
+  align-items: center;
+  display: flex;
+  max-width: 1150px;
+  justify-content: center;
+}
+
+.bar {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  min-width: 75px;
+  width: 0;
+}
+
+.bar-hidden {
+  display: none;
+}
+
+.bar-prebid {
+  background-color: cyan;
+}
+
+.bar-gam {
+  background-color: orangered;
+}
+
+.bar-render {
+  background-color: greenyellow;
+}
+
+.result {
+  padding-left: 24px;
+  width: 150px;
+}
+
 .ads {
   display: flex;
   align-items: center;

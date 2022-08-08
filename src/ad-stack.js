@@ -40,7 +40,10 @@ zjs.cmd.push(() => {
   window.startMeasurements(matched)
 
   googletag.cmd.push(function () {
-    googletag.pubads().addEventListener("slotRenderEnded", () => {
+    googletag.pubads().addEventListener("slotResponseReceived", function () {
+      window.measureGamTime()
+    })
+    googletag.pubads().addEventListener("slotRenderEnded", function () {
       window.endMeasurements()
     })
   })
@@ -68,6 +71,9 @@ pbjs.que = pbjs.que || []
 
 function runHeaderBidding(unmatched) {
   pbjs.que.push(function () {
+    pbjs.onEvent("auctionEnd", function () {
+      window.measurePrebidTime()
+    })
     pbjs.addAdUnits(unmatched)
     pbjs.requestBids({
       bidsBackHandler: initAdserver,
