@@ -86,18 +86,6 @@ main {
   padding: 4px;
 }
 
-.bar-prebid {
-  background-color: cyan;
-}
-
-.bar-gam {
-  background-color: orangered;
-}
-
-.bar-render {
-  background-color: greenyellow;
-}
-
 .result {
   margin-left: 24px;
   width: 150px;
