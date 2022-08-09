@@ -68,13 +68,13 @@ main {
 .chart {
   align-items: center;
   display: flex;
-  max-width: 1300px;
   justify-content: center;
+  max-width: 100%;
 }
 
 .chart-title {
   margin-right: 24px;
-  width: 220px;
+  min-width: 220px;
 }
 
 .bar {
@@ -88,7 +88,7 @@ main {
 
 .result {
   margin-left: 24px;
-  width: 150px;
+  min-width: 80px;
 }
 
 .ads {
@@ -136,5 +136,4 @@ footer {
     min-height: auto;
     padding: 28px 0 0 0;
   }
-
 }
