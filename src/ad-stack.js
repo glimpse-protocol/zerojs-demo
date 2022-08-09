@@ -41,7 +41,7 @@ zjs.cmd.push(() => {
 
   googletag.cmd.push(function () {
     googletag.pubads().addEventListener("slotResponseReceived", function () {
-      window.measureGamTime()
+      window.setGamTimeStamp()
     })
     googletag.pubads().addEventListener("slotRenderEnded", function () {
       window.endMeasurements()
@@ -72,7 +72,7 @@ pbjs.que = pbjs.que || []
 function runHeaderBidding(unmatched) {
   pbjs.que.push(function () {
     pbjs.onEvent("auctionEnd", function () {
-      window.measurePrebidTime()
+      window.setPrebidTimeStamp()
     })
     pbjs.addAdUnits(unmatched)
     pbjs.requestBids({

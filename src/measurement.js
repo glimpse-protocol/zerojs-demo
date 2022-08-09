@@ -57,11 +57,11 @@ window.startMeasurements = (matched) => {
   window.startTime = Date.now()
 }
 
-window.measurePrebidTime = function () {
+window.setPrebidTimeStamp = function () {
   window.prebidEnd = Date.now()
 }
 
-window.measureGamTime = function () {
+window.setGamTimeStamp = function () {
   window.gamEnd = Date.now()
 }
 
@@ -83,7 +83,10 @@ window.endMeasurements = () => {
   measurements.render = window.endTime - window.gamEnd
 
   const currentMeasurements = JSON.parse(localStorage.getItem(window.storageKey)) ?? []
-  localStorage.setItem(window.storageKey, JSON.stringify([measurements, ...currentMeasurements]))
+  localStorage.setItem(
+    window.storageKey,
+    JSON.stringify([measurements, ...currentMeasurements]),
+  )
 
   addBarMeasurements(measurements, "current")
 
