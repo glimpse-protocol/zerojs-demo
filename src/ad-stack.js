@@ -33,20 +33,9 @@ var zjs = window.zjs || {}
 zjs.cmd = window.zjs.cmd || []
 
 zjs.cmd.push(() => {
-  zjs.setPubId("jp57")
+  zjs.setConfig({ id: "demo" })
 
   const [unmatched, matched] = zjs.prematch(units)
-
-  window.startMeasurements(matched)
-
-  googletag.cmd.push(function () {
-    googletag.pubads().addEventListener("slotResponseReceived", function () {
-      window.setGamTimeStamp()
-    })
-    googletag.pubads().addEventListener("slotRenderEnded", function () {
-      window.endMeasurements()
-    })
-  })
 
   runHeaderBidding(unmatched)
 })
@@ -71,9 +60,6 @@ pbjs.que = pbjs.que || []
 
 function runHeaderBidding(unmatched) {
   pbjs.que.push(function () {
-    pbjs.onEvent("auctionEnd", function () {
-      window.setPrebidTimeStamp()
-    })
     pbjs.addAdUnits(unmatched)
     pbjs.requestBids({
       bidsBackHandler: initAdserver,
