@@ -30,75 +30,18 @@ header .heading {
 }
 
 main {
-  padding: 20px 20px 48px 20px;
+  padding: 8px;
   margin: auto;
   max-width: 1080px;
-}
-
-.key {
-  align-items: center;
-  display: flex;
-  gap: 16px;
-}
-
-.key-color {
-  height: 20px;
-  width: 20px;
-}
-
-.key-color-prebid {
-  background-color: cyan;
-}
-
-.key-color-gam {
-  background-color: orangered;
-}
-
-.key-color-render {
-  background-color: greenyellow;
-}
-
-.charts {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-size: 14px;
-  margin: 20px 0;
-}
-
-.chart {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-}
-
-.chart-title {
-  margin-right: 24px;
-  min-width: 220px;
-}
-
-.bar {
-  align-items: center;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  min-width: 55px;
-  padding: 4px;
-}
-
-.result {
-  margin-left: 24px;
-  min-width: 80px;
 }
 
 .ads {
   align-items: center;
   display: flex;
   gap: 16px;
+  height: calc(100vh - 68px - 40px - 80px);
   justify-content: space-evenly;
-  padding: 28px 0 0 0;
+  margin: 16px 0 0 0;
 }
 
 .unit {
@@ -110,17 +53,13 @@ main {
   width: 300px;
 }
 
-.hidden {
-  display: none;
-}
-
 footer {
-  background-color: #02202f;
+  color: grey;
   bottom: 0;
-  color: white;
   padding: 8px 16px;
   position: absolute;
   text-align: right;
+  font-size: small;
   width: 100%;
 }
 
@@ -128,9 +67,6 @@ footer {
   .ads {
     flex-direction: column;
   }
-}
-
-@media only screen and (max-width: 700px) {
   header .heading {
     font-size: 24px;
   }
