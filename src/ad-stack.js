@@ -29,56 +29,64 @@ const units = [
   },
 ]
 
-var zjs = window.zjs || {}
-zjs.cmd = window.zjs.cmd || []
+window.googletag = window.googletag || {}
+window.googletag.cmd = window.googletag.cmd || []
+window.pbjs = window.pbjs || {}
+window.pbjs.que = window.pbjs.que || []
+window.zjs = window.zjs || {}
+window.zjs.cmd = window.zjs.cmd || []
 
-zjs.cmd.push(() => {
-  zjs.setConfig({ id: "demo" })
+setupGoogleTag()
+setupGlimpseZero()
 
-  const [unmatched, matched] = zjs.prematch(units)
-
-  runHeaderBidding(unmatched)
-})
-
-var googletag = googletag || {}
-googletag.cmd = googletag.cmd || []
-
-googletag.cmd.push(function () {
-  units.forEach(({ code, mediaTypes, div }) => {
-    googletag
-      .defineSlot(code, mediaTypes.banner.sizes, div)
-      .addService(googletag.pubads())
+function setupGoogleTag() {
+  googletag.cmd.push(function () {
+    units.forEach(({ code, mediaTypes, div }) => {
+      googletag
+        .defineSlot(code, mediaTypes.banner.sizes, div)
+        .addService(googletag.pubads())
+    })
+    googletag.pubads().disableInitialLoad()
+    googletag.pubads().enableSingleRequest()
+    googletag.enableServices()
   })
-  googletag.pubads().disableInitialLoad()
-  googletag.pubads().enableSingleRequest()
-  googletag.enableServices()
-})
+}
 
-
-var pbjs = pbjs || {}
-pbjs.que = pbjs.que || []
-
-function runHeaderBidding(unmatched) {
+function runHeaderBidding(misses) {
   pbjs.que.push(function () {
-    pbjs.addAdUnits(unmatched)
+    pbjs.addAdUnits(misses)
     pbjs.requestBids({
-      bidsBackHandler: initAdserver,
+      bidsBackHandler: () => {
+        if (pbjs.initAdServer) return
+        pbjs.initAdServer = true
+
+        googletag.cmd.push(function () {
+          pbjs.que.push(function () {
+            pbjs.setTargetingForGPTAsync()
+            googletag.pubads().refresh()
+          })
+        })
+      },
       timeout: 1500,
     })
   })
 }
 
-function initAdserver() {
-  if (pbjs.initAdserverSet) return
-  pbjs.initAdserverSet = true
-  googletag.cmd.push(function () {
-    pbjs.que.push(function () {
-      pbjs.setTargetingForGPTAsync()
-      googletag.pubads().refresh()
+function setupGlimpseZero() {
+  zjs.cmd.push(() => {
+    zjs.init({
+      id: "demo",
+      adUnitPathKey: "code"
     })
+
+    const { misses } = zjs.prematch(units)
+    if (misses.length === 0) {
+      console.log("All units prematched no prebid to run")
+      googletag.cmd.push(() => {
+        googletag.pubads().refresh()
+      })
+    } else {
+      runHeaderBidding(misses)
+    }
   })
 }
-
-setTimeout(function () {
-  initAdserver()
-}, 3000)
