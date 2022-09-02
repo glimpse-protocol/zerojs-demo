@@ -1,22 +1,15 @@
 {
+  "name": "@glimpse/zerojs-demo",
   "author": "Evan Hynes <evan.hynes@glimpseprotocol.io>",
   "license": "MIT",
-  "name": "zerojs-demo",
   "packageManager": "yarn@3.2.2",
   "repository": "git@github.com:glimpse-protocol/zerojs-demo.git",
   "version": "0.3.4",
-  "engines": {
-    "node": ">=16"
-  },
   "scripts": {
     "deploy": "rsync -avr --usermap=evan:www-data src/* demo:/srv/zerojs-demo",
-    "develop": "http-server -c-1 --cors",
-    "lint": "eslint src/**/*.js"
+    "develop": "http-server src/ -c-1 --cors"
   },
   "devDependencies": {
-    "eslint": "^8.21.0"
-  },
-  "dependencies": {
     "http-server": "^14.1.1"
   }
 }
